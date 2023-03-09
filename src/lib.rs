@@ -7,7 +7,7 @@ use openai_flows::chat_completion;
 pub async fn run() {
     listen_to_event(
         "test_study",//github Repository仓库名
-        "chat-with-chatgpt-test",//github organization组织名
+        "kuangwenjie2323",//github organization组织名
         vec!["issue_comment", "issues"],
         handler,
     )
@@ -16,7 +16,7 @@ pub async fn run() {
 
 async fn handler(payload: EventPayload) {
     let octo = get_octo(Some(String::from("test_study")));
-    let issues = octo.issues("test_study", "chat-with-chatgpt-test");
+    let issues = octo.issues("test_study", "kuangwenjie2323");
 
     match payload {
         EventPayload::IssueCommentEvent(e) => {
