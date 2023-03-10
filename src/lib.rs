@@ -33,17 +33,17 @@ async fn handler(payload: EventPayload) {
             }
         }
 
-        // EventPayload::IssuesEvent(e) => {
-        //     let title = e.issue.title;
-        //     let body = e.issue.body.unwrap_or("".to_string());
-        //     let q = title + "\n" + &body;
-        //     if let Some(r) = chat_completion("Karewink", &format!("issue#{}", e.issue.number), &q) {
-        //         if let Err(e) = issues.create_comment(e.issue.number, r.choice).await {
-        //             write_error_log!(e.to_string());
-        //         }
-        //     }
-        // }
+        EventPayload::IssuesEvent(e) => {
+            let title = e.issue.title;
+            let body = e.issue.body.unwrap_or("".to_string());
+            let q = title + "\n" + &body;
+            if let Some(r) = chat_completion("Karewink", &format!("issue#{}", e.issue.number), &q) {
+                if let Err(e) = issues.create_comment(e.issue.number, r.choice).await {
+                    write_error_log!(e.to_string());
+                }
+             }
+         }
 
-        // _ => (),
+         _ => (),
     };
 }
